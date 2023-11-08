@@ -1,0 +1,200 @@
+{
+    "type": "video",
+    "videoID": "vid001",
+    "links": [
+        {
+            "type": "video",
+            "videoID": "vid002",
+            "links": []
+        },
+        {
+            "type": "video",
+            "videoID": "vid003",
+            "links": [
+                {
+                    "type": "video",
+                    "videoID": "vid004"
+                },
+                {
+                    "type": "video",
+                    "videoID": "vid005"
+                }
+            ]
+        },
+        {
+            "type": "video",
+            "videoID": "vid006"
+        },
+        {
+            "type": "video",
+            "videoID": "vid007",
+            "links": [
+                {
+                    "type": "video",
+                    "videoID": "vid008",
+                    "links": [
+                        {
+                            "type": "video",
+                            "videoID": "vid009",
+                            "links": [
+                                {
+                                    "type": "video",
+                                    "videoID": "vid010"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "details": {
+        "type": "video",
+        "videoID": "vid001",
+        "links": [
+            {
+                "type": "video",
+                "videoID": "vid002",
+                "links": []
+            },
+            {
+                "type": "video",
+                "videoID": "vid003",
+                "links": [
+                    {
+                        "type": "video",
+                        "videoID": "vid004"
+                    },
+                    {
+                        "type": "video",
+                        "videoID": "vid005"
+                    }
+                ]
+            },
+            {
+                "type": "video",
+                "videoID": "vid006"
+            },
+            {
+                "type": "video",
+                "videoID": "vid007",
+                "links": [
+                    {
+                        "type": "video",
+                        "videoID": "vid008",
+                        "links": [
+                            {
+                                "type": "video",
+                                "videoID": "vid009",
+                                "links": [
+                                    {
+                                        "type": "video",
+                                        "videoID": "vid001",
+                                        "links": [
+                                            {
+                                                "type": "video",
+                                                "videoID": "vid002",
+                                                "links": []
+                                            },
+                                            {
+                                                "type": "video",
+                                                "videoID": "vid003",
+                                                "links": [
+                                                    {
+                                                        "type": "video",
+                                                        "videoID": "vid004"
+                                                    },
+                                                    {
+                                                        "type": "video",
+                                                        "videoID": "vid005"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "video",
+                                                "videoID": "vid006"
+                                            },
+                                            {
+                                                "type": "video",
+                                                "videoID": "vid007",
+                                                "links": [
+                                                    {
+                                                        "type": "video",
+                                                        "videoID": "vid008",
+                                                        "links": [
+                                                            {
+                                                                "type": "video",
+                                                                "videoID": "vid009",
+                                                                "links": [
+                                                                    {
+                                                                        "type": "video",
+                                                                        "videoID": "vid010"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "details": {
+                                            "type": "video",
+                                            "videoID": "vid001",
+                                            "links": [
+                                                {
+                                                    "type": "video",
+                                                    "videoID": "vid002",
+                                                    "links": []
+                                                },
+                                                {
+                                                    "type": "video",
+                                                    "videoID": "vid003",
+                                                    "links": [
+                                                        {
+                                                            "type": "video",
+                                                            "videoID": "vid004"
+                                                        },
+                                                        {
+                                                            "type": "video",
+                                                            "videoID": "vid005"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "video",
+                                                    "videoID": "vid006"
+                                                },
+                                                {
+                                                    "type": "video",
+                                                    "videoID": "vid007",
+                                                    "links": [
+                                                        {
+                                                            "type": "video",
+                                                            "videoID": "vid008",
+                                                            "links": [
+                                                                {
+                                                                    "type": "video",
+                                                                    "videoID": "vid009",
+                                                                    "links": [
+                                                                        {
+                                                                            "type": "video",
+                                                                            "videoID": "vid010"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

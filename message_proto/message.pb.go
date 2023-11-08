@@ -9,6 +9,7 @@ package message_proto
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	anypb "google.golang.org/protobuf/types/known/anypb"
 	reflect "reflect"
 	sync "sync"
 )
@@ -25,7 +26,10 @@ type Message struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Text string `protobuf:"bytes,1,opt,name=text,proto3" json:"text,omitempty"`
+	Type    string           `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
+	VideoID string           `protobuf:"bytes,2,opt,name=videoID,proto3" json:"videoID,omitempty"`
+	Links   []*Message_Links `protobuf:"bytes,3,rep,name=links,proto3" json:"links,omitempty"`
+	Details *Message_Details `protobuf:"bytes,4,opt,name=details,proto3" json:"details,omitempty"`
 }
 
 func (x *Message) Reset() {
@@ -60,21 +64,261 @@ func (*Message) Descriptor() ([]byte, []int) {
 	return file_message_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Message) GetText() string {
+func (x *Message) GetType() string {
 	if x != nil {
-		return x.Text
+		return x.Type
 	}
 	return ""
+}
+
+func (x *Message) GetVideoID() string {
+	if x != nil {
+		return x.VideoID
+	}
+	return ""
+}
+
+func (x *Message) GetLinks() []*Message_Links {
+	if x != nil {
+		return x.Links
+	}
+	return nil
+}
+
+func (x *Message) GetDetails() *Message_Details {
+	if x != nil {
+		return x.Details
+	}
+	return nil
+}
+
+type Message_Links struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Type    string       `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
+	VideoID string       `protobuf:"bytes,2,opt,name=videoID,proto3" json:"videoID,omitempty"`
+	Links   []*anypb.Any `protobuf:"bytes,3,rep,name=links,proto3" json:"links,omitempty"`
+}
+
+func (x *Message_Links) Reset() {
+	*x = Message_Links{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_message_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Message_Links) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Message_Links) ProtoMessage() {}
+
+func (x *Message_Links) ProtoReflect() protoreflect.Message {
+	mi := &file_message_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Message_Links.ProtoReflect.Descriptor instead.
+func (*Message_Links) Descriptor() ([]byte, []int) {
+	return file_message_proto_rawDescGZIP(), []int{0, 0}
+}
+
+func (x *Message_Links) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *Message_Links) GetVideoID() string {
+	if x != nil {
+		return x.VideoID
+	}
+	return ""
+}
+
+func (x *Message_Links) GetLinks() []*anypb.Any {
+	if x != nil {
+		return x.Links
+	}
+	return nil
+}
+
+type Message_Links1 struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Type    string       `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
+	VideoID string       `protobuf:"bytes,2,opt,name=videoID,proto3" json:"videoID,omitempty"`
+	Links   []*anypb.Any `protobuf:"bytes,3,rep,name=links,proto3" json:"links,omitempty"`
+}
+
+func (x *Message_Links1) Reset() {
+	*x = Message_Links1{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_message_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Message_Links1) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Message_Links1) ProtoMessage() {}
+
+func (x *Message_Links1) ProtoReflect() protoreflect.Message {
+	mi := &file_message_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Message_Links1.ProtoReflect.Descriptor instead.
+func (*Message_Links1) Descriptor() ([]byte, []int) {
+	return file_message_proto_rawDescGZIP(), []int{0, 1}
+}
+
+func (x *Message_Links1) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *Message_Links1) GetVideoID() string {
+	if x != nil {
+		return x.VideoID
+	}
+	return ""
+}
+
+func (x *Message_Links1) GetLinks() []*anypb.Any {
+	if x != nil {
+		return x.Links
+	}
+	return nil
+}
+
+type Message_Details struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Type    string            `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
+	VideoID string            `protobuf:"bytes,2,opt,name=videoID,proto3" json:"videoID,omitempty"`
+	Links   []*Message_Links1 `protobuf:"bytes,3,rep,name=links,proto3" json:"links,omitempty"`
+}
+
+func (x *Message_Details) Reset() {
+	*x = Message_Details{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_message_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Message_Details) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Message_Details) ProtoMessage() {}
+
+func (x *Message_Details) ProtoReflect() protoreflect.Message {
+	mi := &file_message_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Message_Details.ProtoReflect.Descriptor instead.
+func (*Message_Details) Descriptor() ([]byte, []int) {
+	return file_message_proto_rawDescGZIP(), []int{0, 2}
+}
+
+func (x *Message_Details) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *Message_Details) GetVideoID() string {
+	if x != nil {
+		return x.VideoID
+	}
+	return ""
+}
+
+func (x *Message_Details) GetLinks() []*Message_Links1 {
+	if x != nil {
+		return x.Links
+	}
+	return nil
 }
 
 var File_message_proto protoreflect.FileDescriptor
 
 var file_message_proto_rawDesc = []byte{
 	0x0a, 0x0d, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12,
-	0x0d, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x1d,
-	0x0a, 0x07, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x65, 0x78,
-	0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x65, 0x78, 0x74, 0x42, 0x03, 0x5a,
-	0x01, 0x2e, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x0d, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x19,
+	0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f,
+	0x61, 0x6e, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xda, 0x03, 0x0a, 0x07, 0x4d, 0x65,
+	0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x76, 0x69, 0x64,
+	0x65, 0x6f, 0x49, 0x44, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x76, 0x69, 0x64, 0x65,
+	0x6f, 0x49, 0x44, 0x12, 0x32, 0x0a, 0x05, 0x6c, 0x69, 0x6e, 0x6b, 0x73, 0x18, 0x03, 0x20, 0x03,
+	0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x5f, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x4c, 0x69, 0x6e, 0x6b, 0x73,
+	0x52, 0x05, 0x6c, 0x69, 0x6e, 0x6b, 0x73, 0x12, 0x38, 0x0a, 0x07, 0x64, 0x65, 0x74, 0x61, 0x69,
+	0x6c, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61,
+	0x67, 0x65, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
+	0x2e, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x52, 0x07, 0x64, 0x65, 0x74, 0x61, 0x69, 0x6c,
+	0x73, 0x1a, 0x61, 0x0a, 0x05, 0x4c, 0x69, 0x6e, 0x6b, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x79,
+	0x70, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x18,
+	0x0a, 0x07, 0x76, 0x69, 0x64, 0x65, 0x6f, 0x49, 0x44, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x07, 0x76, 0x69, 0x64, 0x65, 0x6f, 0x49, 0x44, 0x12, 0x2a, 0x0a, 0x05, 0x6c, 0x69, 0x6e, 0x6b,
+	0x73, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x41, 0x6e, 0x79, 0x52, 0x05, 0x6c,
+	0x69, 0x6e, 0x6b, 0x73, 0x1a, 0x62, 0x0a, 0x06, 0x4c, 0x69, 0x6e, 0x6b, 0x73, 0x31, 0x12, 0x12,
+	0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x79,
+	0x70, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x76, 0x69, 0x64, 0x65, 0x6f, 0x49, 0x44, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x07, 0x76, 0x69, 0x64, 0x65, 0x6f, 0x49, 0x44, 0x12, 0x2a, 0x0a, 0x05,
+	0x6c, 0x69, 0x6e, 0x6b, 0x73, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x67, 0x6f,
+	0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x41, 0x6e,
+	0x79, 0x52, 0x05, 0x6c, 0x69, 0x6e, 0x6b, 0x73, 0x1a, 0x6c, 0x0a, 0x07, 0x44, 0x65, 0x74, 0x61,
+	0x69, 0x6c, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x76, 0x69, 0x64, 0x65, 0x6f,
+	0x49, 0x44, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x76, 0x69, 0x64, 0x65, 0x6f, 0x49,
+	0x44, 0x12, 0x33, 0x0a, 0x05, 0x6c, 0x69, 0x6e, 0x6b, 0x73, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x1d, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x4c, 0x69, 0x6e, 0x6b, 0x73, 0x31, 0x52,
+	0x05, 0x6c, 0x69, 0x6e, 0x6b, 0x73, 0x42, 0x03, 0x5a, 0x01, 0x2e, 0x62, 0x06, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x33,
 }
 
 var (
@@ -89,16 +333,25 @@ func file_message_proto_rawDescGZIP() []byte {
 	return file_message_proto_rawDescData
 }
 
-var file_message_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_message_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_message_proto_goTypes = []interface{}{
-	(*Message)(nil), // 0: message_proto.Message
+	(*Message)(nil),         // 0: message_proto.Message
+	(*Message_Links)(nil),   // 1: message_proto.Message.Links
+	(*Message_Links1)(nil),  // 2: message_proto.Message.Links1
+	(*Message_Details)(nil), // 3: message_proto.Message.Details
+	(*anypb.Any)(nil),       // 4: google.protobuf.Any
 }
 var file_message_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	1, // 0: message_proto.Message.links:type_name -> message_proto.Message.Links
+	3, // 1: message_proto.Message.details:type_name -> message_proto.Message.Details
+	4, // 2: message_proto.Message.Links.links:type_name -> google.protobuf.Any
+	4, // 3: message_proto.Message.Links1.links:type_name -> google.protobuf.Any
+	2, // 4: message_proto.Message.Details.links:type_name -> message_proto.Message.Links1
+	5, // [5:5] is the sub-list for method output_type
+	5, // [5:5] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_message_proto_init() }
@@ -119,6 +372,42 @@ func file_message_proto_init() {
 				return nil
 			}
 		}
+		file_message_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Message_Links); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_message_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Message_Links1); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_message_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Message_Details); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -126,7 +415,7 @@ func file_message_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_message_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

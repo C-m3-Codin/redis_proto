@@ -3,6 +3,33 @@ package message_proto;
 
 option go_package = ".";
 
+
+import "google/protobuf/any.proto";
+
+
+
 message Message {
-  string text = 1;
+
+    message Links {
+        string type = 1;
+        string videoID = 2;
+        repeated google.protobuf.Any links = 3;
+    }
+
+    message Links1 {
+        string type = 1;
+        string videoID = 2;
+        repeated google.protobuf.Any links = 3;
+    }
+
+    message Details {
+        string type = 1;
+        string videoID = 2;
+        repeated Links1 links = 3;
+    }
+
+    string type = 1;
+    string videoID = 2;
+    repeated Links links = 3;
+    Details details = 4;
 }

@@ -24,6 +24,13 @@ func SetRedis(key string, value any) (redisStatus *redis.StatusCmd, err error) {
 	return
 }
 
+// func GetRedis(key string) {
+// 	var ctx = context.Background()
+// 	redisStatus := redisClient.Get(ctx, key)
+// 	err := redisStatus.Err()
+// 	return
+// }
+
 func CloseRedis() {
 	redisClient.Close()
 }

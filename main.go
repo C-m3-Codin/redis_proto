@@ -43,6 +43,35 @@ func pongHandler(c *gin.Context) {
 
 func benchSetHandler(c *gin.Context) {
 
+	data_proto, err_proto := getProto(c)
+	data_json, err_json := getJson(c)
+	// fmt.Println(data, err)
+
+	if err_json != nil || err_proto != nil {
+		// fmt.Println("Redis Err is ", err)
+		fmt.Println("Error in json parsing or proto parsing")
+		fmt.Println("json err", err_json)
+		fmt.Println("proto err", err_proto)
+
+	}
+	var total_elapsedTime_proto int64
+	var total_elapsedTime_json int64
+
+	for i := 0; i < 10000; i++ {
+		startTime_proto := time.Now()
+		key_proto := fmt.Sprintf("protoMessage%v", i)
+		services.SetRedis(key_proto, data_proto)
+		elapsedTime_proto := time.Since(startTime_proto).Microseconds()
+		total_elapsedTime_proto += elapsedTime_proto
+
+		startTime_json := time.Now()
+		key_json := fmt.Sprintf("jsonMessage%v", i)
+		services.SetRedis(key_json, data_json)
+		elapsedTime_json := time.Since(startTime_json).Microseconds()
+		total_elapsedTime_json += elapsedTime_json
+
+	}
+
 }
 
 func benchGetHandler(c *gin.Context) {

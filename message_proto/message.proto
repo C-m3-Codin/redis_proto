@@ -4,32 +4,48 @@ package message_proto;
 option go_package = ".";
 
 
-import "google/protobuf/any.proto";
-
+// import "google/protobuf/any.proto";
 
 
 message Message {
-
-    message Links {
-        string type = 1;
-        string videoID = 2;
-        repeated google.protobuf.Any links = 3;
-    }
-
-    message Links1 {
-        string type = 1;
-        string videoID = 2;
-        repeated google.protobuf.Any links = 3;
-    }
-
-    message Details {
-        string type = 1;
-        string videoID = 2;
-        repeated Links1 links = 3;
-    }
-
     string type = 1;
     string videoID = 2;
-    repeated Links links = 3;
-    Details details = 4;
+    string links = 3;
+    string atype = 4;
+    string avideoID = 5;
+    string alinks = 6;
+    string btype = 7;
+    string bvideoID = 8;
+    string blinks = 9;
+    string batype = 10;
+    string bavideoID = 11;
+    string balinks = 12;
+    string ctype = 13;
+    string cvideoID = 14;
+    string clinks = 15;
+    string catype_catype_catype_catype_catype_catype_catype_ = 16;
+    string cavideoID = 17;
+    string calinks = 18;
+    string cbtype = 19;
+    string cbvideoID = 20;
+    string dclinkscatype_catype_catype_catype_catype_cadclinkscatype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_type_catype_catype_catype_caaatype_catype_catype_catype_catype_ = 21;
+    string dclinkscatype_catype_catype_catype_catydclinkscatype_catype_catype_catype_catype_catpe_catype_catype_catype_catype_catype_catype_catype_catype_pe_catype_catype_catype_catype_cataaaaype_catype_catype_catype_catype_ = 22;
+    string dclinkscatype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_ = 23;
+    string cbalinks = 24;
+    string dblinks = 25;
+    string dbatype = 26;
+    string dbavideoIDcatype_catype_catype_catype_catype_catype_catype_ = 27;
+    string dbalinkscatype_catype_catype_catype_catype_catype_catype_ = 28;
+    string dctypecatype_catype_catype_catype_catype_catype_catype_ = 29;
+    string dcvideoIDcatype_catype_catype_catype_catype_catype_catype_ = 30;
+    string dclinksbcatype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_ = 31;
+    string dcatype = 32;
+    string dcavidecatype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_oID = 33;
+    string dcalicatype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_nks = 34;
+    string dcbtycatype_catype_catype_catype_catype_catype_catype_pe = 35;
+    string dcbvideoID = 36;
+    string dcblicatype_catype_catype_catype_catype_catype_catype_nks = 37;
+    string dcbatype = 38;
+    string dclinkscattype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_catype_ = 39;
+    string dcbalinks = 40;
 }

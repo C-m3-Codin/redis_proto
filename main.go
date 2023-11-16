@@ -43,34 +43,51 @@ func pongHandler(c *gin.Context) {
 
 func benchSetHandler(c *gin.Context) {
 
-	data_proto, err_proto := getProto(c)
-	data_json, err_json := getJson(c)
-	// fmt.Println(data, err)
+	var count int
+	count = 1000
 
-	if err_json != nil || err_proto != nil {
-		// fmt.Println("Redis Err is ", err)
-		fmt.Println("Error in json parsing or proto parsing")
-		fmt.Println("json err", err_json)
-		fmt.Println("proto err", err_proto)
-
+	err, message := getMessageFromJson(c)
+	if err != nil {
+		fmt.Println(err)
 	}
-	var total_elapsedTime_proto int64
-	var total_elapsedTime_json int64
 
-	for i := 0; i < 10000; i++ {
+	var total_elapsedTime_proto int
+	var total_elapsedTime_json int
+
+	for i := 0; i < count; i++ {
 		startTime_proto := time.Now()
+		data_proto, err_proto := getProto(message)
+		if err_proto != nil {
+			fmt.Println("proto err", err_proto)
+
+		}
 		key_proto := fmt.Sprintf("protoMessage%v", i)
 		services.SetRedis(key_proto, data_proto)
 		elapsedTime_proto := time.Since(startTime_proto).Microseconds()
-		total_elapsedTime_proto += elapsedTime_proto
+		fmt.Println("time for proto is ", elapsedTime_proto)
+		total_elapsedTime_proto += int(elapsedTime_proto)
 
 		startTime_json := time.Now()
+		data_json, err_json := getJson(message)
+		if err_json != nil {
+			fmt.Println("json err", err_json)
+
+		}
 		key_json := fmt.Sprintf("jsonMessage%v", i)
 		services.SetRedis(key_json, data_json)
 		elapsedTime_json := time.Since(startTime_json).Microseconds()
-		total_elapsedTime_json += elapsedTime_json
+		fmt.Println("time for json is ", elapsedTime_json)
+		total_elapsedTime_json += int(elapsedTime_json)
 
 	}
+	result := make(map[string]interface{})
+
+	result["total_elapsedTime_json"] = total_elapsedTime_json
+	result["total_elapsedTime_proto"] = total_elapsedTime_proto
+	result["average_json"] = total_elapsedTime_json / count
+	result["average_proto"] = total_elapsedTime_proto / count
+
+	c.JSON(200, gin.H{"resilt": result})
 
 }
 
@@ -82,19 +99,31 @@ func protoSetHandler(c *gin.Context) {
 	// Start measuring time
 	startTime := time.Now()
 
-	data, err := getProto(c)
-	fmt.Println(data, err)
+	err, message := getMessageFromJson(c)
+	if err != nil {
+		fmt.Println("Message from json in proto set handler error ", err)
+	}
+
+	data, err := getProto(message)
+	if err != nil {
+
+		fmt.Println("error in getProto", err)
+	}
+	elapsedTime := time.Since(startTime)
 
 	_, err = services.SetRedis("protoMessage", data)
+	if err != nil {
+
+		fmt.Println("Redis Err is ", err)
+	}
 	fmt.Println("Redis Err is", err)
 
 	// Calculate the time taken
-	elapsedTime := time.Since(startTime)
 
 	// Create a JSON response
 	response := map[string]interface{}{
 		"message":    "Set Proto called",
-		"time_taken": elapsedTime.String(), // Convert the time.Duration to a string
+		"time_taken": elapsedTime.Microseconds(), // Convert the time.Duration to a string
 	}
 
 	c.JSON(http.StatusOK, response)
@@ -103,16 +132,28 @@ func protoSetHandler(c *gin.Context) {
 
 func jsonSetHandler(c *gin.Context) {
 	startTime := time.Now()
-	data, err := getJson(c)
-	fmt.Println(data, err)
+
+	err, message := getMessageFromJson(c)
+	if err != nil {
+		fmt.Println("Message from json in json set handler error ", err)
+	}
+
+	data, err := getJson(message)
+	if err != nil {
+
+		fmt.Println("error in geJson", err)
+	}
+	elapsedTime := time.Since(startTime)
 
 	_, err = services.SetRedis("jsonMessage", data)
-	fmt.Println("Redis Err is ", err)
+	if err != nil {
 
-	elapsedTime := time.Since(startTime)
+		fmt.Println("Redis Err is ", err)
+	}
+
 	response := map[string]interface{}{
-		"message":    "Set Proto called",
-		"time_taken": elapsedTime.String(), // Convert the time.Duration to a string
+		"message":    "Set json called",
+		"time_taken": elapsedTime.Microseconds(), // Convert the time.Duration to a string
 	}
 
 	c.JSON(http.StatusOK, response)
@@ -127,11 +168,9 @@ func jsonGetHandler(c *gin.Context) {
 
 }
 
-func getProto(c *gin.Context) (data []byte, err error) {
+func getProto(message *message_proto.Message) (data []byte, err error) {
 
-	var message *message_proto.Message
-
-	c.BindJSON(&message)
+	// fmt.Println(" error in binding json inside proto ", err)
 
 	data, err = proto.Marshal(message)
 	if err != nil {
@@ -141,16 +180,18 @@ func getProto(c *gin.Context) (data []byte, err error) {
 	return
 }
 
-func getJson(c *gin.Context) (data []byte, err error) {
-
-	var message *message_proto.Message
-
-	c.BindJSON(&message)
+func getJson(message *message_proto.Message) (data []byte, err error) {
 
 	data, err = json.Marshal(message)
 	if err != nil {
 		panic(err)
 	}
 	// fmt.Println(data)
+	return
+}
+
+func getMessageFromJson(c *gin.Context) (err error, message *message_proto.Message) {
+
+	err = c.BindJSON(&message)
 	return
 }
